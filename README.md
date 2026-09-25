@@ -4,6 +4,9 @@ A tiny embeddable checkout: a drop-in script, a hosted checkout app, and a demo
 storefront showing it working end to end. No backend — payments are simulated
 client-side using the three test cards in the brief.
 
+**Live demo:** https://dodo-demo-site-opal.vercel.app
+**Checkout app (standalone):** https://dodo-checkout-app-sigma.vercel.app
+
 ## The three pieces
 
 ```
@@ -81,6 +84,24 @@ Rebuilding the SDK (`npm run build:sdk`) is a separate step from `npm run
 dev` because the SDK is meant to be consumed as a built artifact, exactly
 like a merchant would `<script src="...">` it — there's no framework dev
 server for it.
+
+## Deploying
+
+`checkout-app` and `demo-site` are deployed as two separate Vercel projects
+(their own origins is the whole point). `checkout-app` deploys with no
+special config. `demo-site` needs one environment variable set to the
+checkout app's real URL:
+
+```
+CHECKOUT_APP_URL=https://dodo-checkout-app-sigma.vercel.app
+```
+
+That's because the SDK bakes `CHECKOUT_APP_URL` in at **build** time (see
+`sdk/tsup.config.ts`), and `demo-site`'s `prebuild` script rebuilds the SDK
+as part of its own Vercel build (see `demo-site/package.json`) so the
+`dodo-checkout.js` it serves points at the deployed checkout app instead of
+`localhost:5174`. Changing the env var requires a redeploy with the build
+cache cleared to actually take effect.
 
 ## Test cards
 
