@@ -1,0 +1,17 @@
+{
+  "name": "@dodo/checkout-sdk",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Drop-in script that opens the Dodo embeddable checkout.",
+  "main": "dist/dodo-checkout.global.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "dev": "tsup --watch --onSuccess \"node scripts/copy-to-demo.js\"",
+    "build": "tsup && node scripts/copy-to-demo.js"
+  },
+  "devDependencies": {
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2"
+  }
+}

@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.DS_Store
+*.log
+.vite/
+demo-site/public/dodo-checkout.js
+
+# Claude Code data/metadata — local tooling config, not part of the project
+.claude/
+.claude.json
+.mcp.json
+CLAUDE.local.md

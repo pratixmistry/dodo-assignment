@@ -1,0 +1,18 @@
+{
+  "name": "dodo-checkout-monorepo",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "sdk",
+    "checkout-app",
+    "demo-site"
+  ],
+  "scripts": {
+    "dev": "concurrently -n sdk,checkout,demo -c yellow,green,cyan \"npm run dev -w sdk\" \"npm run dev -w checkout-app\" \"npm run dev -w demo-site\"",
+    "build": "npm run build -w sdk && npm run build -w checkout-app && npm run build -w demo-site",
+    "build:sdk": "npm run build -w sdk"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}
